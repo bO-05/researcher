@@ -20,14 +20,22 @@ By feeding web context into a large language model, you can improve accuracy and
 |---------------------------------|---------------------------------|
 | ![Search 1](images/screen1.png) | ![Search 2](images/screen2.png) |
 
-# Installation
+# Installation and run in virtual environments:
 
-* Clone [this repository](https://github.com/VikParuchuri/snip_search) with git.
+* Clone [this repository](https://github.com/bO-05/researcher) with git.
 * Make sure you have Python 3.8+ installed.  As of 12/22, Pytorch doesn't support Python 3.11 on all platforms, so Python 3.10 is recommended.
 * Run `cd researcher` to get into the repository folder.
-* Run `pip install -r requirements.txt` to install the needed packages.
+* Run `python3 -m venv MY_ENV` to create the new environment in this directory 
+* Run `source MY_ENV/bin/activate` to activate the environment
+* Run `python3 -m pip install Flask` to install flask
+* Run `python3 -m pip install -r requirements.txt` to install the needed packages.
+* Run `python3 -m pip install python-dotenv` to install dotenv package.
+* If you want to use `gpt-3.5-turbo` model, you need to run `python3 -m pip install --upgrade openai` to get minimum version 0.27.0 of openai package 
+  or alternatively, to install it manually, do the following:
+  * Download openai-0.27.0-py3-none-any.whl from https://pypi.org/project/openai/#files
+  * Run `python3 -m pip install openai-0.27.0-py3-none-any.whl`.
 * Enter your OpenAI API key in `settings.py` in the `OPENAI_KEY` variable.
-* Run `python app.py` to run the application.  By default it will run on port `5000`.
+* Run `python3 -m app.py` or `python3 -m app` to run the application.  By default it will run on port `5000`.
 * [Optional] By default, Researcher will scrape Google search results.  This is not always reliable.  If you want more reliability, register a [custom search engine](https://developers.google.com/custom-search/) with Google, then:
   * Enter the API key in `settings.py` in the `SEARCH_KEY` variable.  
   * Enter the custom search engine ID in `SEARCH_ID`.

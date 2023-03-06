@@ -9,7 +9,7 @@ import settings
 openai.api_key = settings.OPENAI_KEY
 
 prompt = """\
-Answer the question as truthfully as possible using the provided Search Results. Use this current date: {date}. Do not repeat text. Cite one relevant search result per sentence using [${index}]. Only cite results that were used to create the answer.  Use at most 150 words.
+Answer the question as truthfully as possible using the provided Search Results. Use this current date: {date}. Do not repeat text. Cite one relevant search result per sentence using [${index}]. Only cite results that were used to create the answer.  Use at most 700 words.
 
 Format:
 * Search Result [${index}]: `${search result text}`
@@ -41,14 +41,28 @@ def replace_links(response, chunks):
     return response
 
 
+# using chat model
 def get_summary(query, chunks):
     prompt = generate_prompt(query, chunks)
     try:
-        response = openai.Completion.create(model="text-davinci-003", prompt=prompt, temperature=0,
-                                            max_tokens=settings.OPENAI_TOKEN_MAX)
-        response = response.choices[0].text
+        response = openai.ChatCompletion.create(model="gpt-3.5-turbo",  messages=[{"role": "user", "content": prompt}], max_tokens=settings.OPENAI_TOKEN_MAX)
+        response = response.choices[0].message.content
     except (ServiceUnavailableError, APIError, Timeout):
         response = "Error generating summary"
     response = html.escape(response)
     response = replace_links(response, chunks)
     return response
+
+
+# using davinci model
+# def get_summary(query, chunks):
+#     prompt = generate_prompt(query, chunks)
+#     try:
+#         response = openai.Completion.create(model="text-davinci-003", prompt=prompt, temperature=0,
+#                                             max_tokens=settings.OPENAI_TOKEN_MAX)
+#         response = response.choices[0].text
+#     except (ServiceUnavailableError, APIError, Timeout):
+#         response = "Error generating summary"
+#     response = html.escape(response)
+#     response = replace_links(response, chunks)
+#     return response
