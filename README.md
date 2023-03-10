@@ -40,6 +40,7 @@ By feeding web context into a large language model, you can improve accuracy and
   * Enter the API key in `settings.py` in the `SEARCH_KEY` variable.  
   * Enter the custom search engine ID in `SEARCH_ID`.
   * Change the `SEARCH_METHOD` to `api`.
+* don't forget run `deactivate` to deactivate virtual env
 
 # Usage
 

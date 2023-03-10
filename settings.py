@@ -26,11 +26,11 @@ SEARCH_METHOD = "scrape"  # "scrape" or "api"
 # Google Custom Search
 # Only used when SEARCH_METHOD is "api"
 # Google custom search api key
-SEARCH_KEY = ""
-# SEARCH_KEY = os.environ.get('GOOGLE_SEARCH_API_KEY')
+# SEARCH_KEY = ""
+SEARCH_KEY = os.environ.get('GOOGLE_SEARCH_API_KEY')
 # Google custom search engine id
-SEARCH_ID = ""
-# SEARCH_ID = os.environ.get('GOOGLE_SEARCH_ENGINE_ID')
+# SEARCH_ID = ""
+SEARCH_ID = os.environ.get('GOOGLE_SEARCH_ENGINE_ID')
 # Country to search from
 COUNTRY = "us"
 # Google custom search url
@@ -38,7 +38,7 @@ SEARCH_URL = "https://www.googleapis.com/customsearch/v1?key={key}&cx={cx}&q={qu
 
 # Filtering
 # Maximum number of tracker URLs allowed in a site (rejects sites with more)
-MAX_TRACKER_URLS = 3
+MAX_TRACKER_URLS = 2
 
 # Parsing
 # Language to use to parse results
